@@ -112,9 +112,9 @@ def process_file(filename, sender, password, delay=6):
         print(f"Ошибка чтения файла: {e}")
         return
     
-    print(f"Отправитель: {sender}")
-    print(f"Задержка между транзакциями: {delay} сек")
-    print(f"Обработка транзакций из {filename}\n")
+    #print(f"Отправитель: {sender}")
+    #print(f"Задержка между транзакциями: {delay} сек")
+    #print(f"Обработка транзакций из {filename}\n")
     
     first_tx = True
     
@@ -152,7 +152,7 @@ def process_file(filename, sender, password, delay=6):
             print(f"{address} {amount_str} Error: {error}{txhash_str}")
             fail_count += 1
     
-    print(f"\nИтого: успешно {success_count}, ошибок {fail_count}")
+    #print(f"\nИтого: успешно {success_count}, ошибок {fail_count}")
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
@@ -170,7 +170,7 @@ if __name__ == '__main__':
     else:
         password = getpass.getpass(f"Введите пароль для кошелька {sender}: ")
     
-    # Задержка между транзакциями (по умолчанию 6 секунд)
-    delay = int(sys.argv[4]) if len(sys.argv) >= 5 else 6
+    # Задержка между транзакциями (по умолчанию 10 секунд)
+    delay = int(sys.argv[4]) if len(sys.argv) >= 5 else 10
     
     process_file(filename, sender, password, delay)

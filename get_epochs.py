@@ -11,9 +11,9 @@ from datetime import datetime
 from typing import Optional, Dict, List
 
 # Configuration
-AMOUNT_EPOCH = 10  # Number of recent epochs to process
-API_BASE_URL = "http://node2.gonka.ai:8000"
-BLOCKCHAIN_API_URL = "http://node2.gonka.ai:26657"
+AMOUNT_EPOCH = 35  # Number of recent epochs to process
+API_BASE_URL = "http://tower.gonka.top/:8000"
+BLOCKCHAIN_API_URL = "http://tower.gonka.top:26657"
 
 
 def get_current_epoch() -> int:
