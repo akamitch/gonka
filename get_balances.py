@@ -2,7 +2,7 @@
 import subprocess
 import sys
 
-def get_balance(wallet_address, node_url="http://node2.gonka.ai:26657"):
+def get_balance(wallet_address, node_url="http://net2.gonka.top:8000/chain-rpc/"):
     """Получает баланс кошелька в GONKA"""
     try:
         cmd = [

@@ -17,7 +17,7 @@ if [ $# -eq 0 ]; then
 fi
 
 INPUT_FILE=$1
-NODE="http://tower.gonka.top:26657"
+NODE="http://net2.gonka.top:8000/chain-rpc/"
 INFERENCED="/home/mitch/Crypto/gonka.ai/inferenced"
 
 # Проверка существования файла

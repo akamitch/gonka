@@ -1,17 +1,17 @@
 #!/bin/bash
 
 # Проверка аргументов
-if [ $# -eq 0 ]; then
-    echo "Использование: $0 <имя_файла>"
-    echo "Пример: $0 2026.01.13_metal9.txt"
+if [ $# -lt 2 ]; then
+    echo "Использование: $0 <имя_файла> <аккаунт>"
+    echo "Пример: $0 2026.01.13_metal9.txt freya"
     exit 1
 fi
 
 FILENAME=$1
-PAYMENTS_PATH="payments/${FILENAME}"
-TX_PATH="tx/${FILENAME}"
-ACCOUNT="freya"
-PAUSE_SECONDS=120
+ACCOUNT=$2
+PAYMENTS_PATH="/home/mitch/Crypto/gonka.ai/scripts/payments/${FILENAME}"
+TX_PATH="/home/mitch/Crypto/gonka.ai/scripts/tx/${FILENAME}"
+PAUSE_SECONDS=60
 
 # Проверка существования входного файла
 if [ ! -f "$PAYMENTS_PATH" ]; then
@@ -30,7 +30,7 @@ echo "Аккаунт: ${ACCOUNT}"
 echo "==================================================="
 
 # Запуск первой команды
-git_gonka/mass_send_gonka.py "$PAYMENTS_PATH" "$ACCOUNT" > "$TX_PATH"
+/home/mitch/Crypto/gonka.ai/scripts/git_gonka/mass_send_gonka.py "$PAYMENTS_PATH" "$ACCOUNT" > "$TX_PATH"
 
 # Проверка успешности выполнения
 if [ $? -ne 0 ]; then
@@ -57,7 +57,7 @@ echo "Запуск верификации транзакций..."
 echo "==================================================="
 
 # Запуск второй команды
-git_gonka/verify_transactions_short.sh "$TX_PATH"
+/home/mitch/Crypto/gonka.ai/scripts/git_gonka/verify_transactions_short.sh "$TX_PATH"
 
 # Проверка успешности выполнения
 if [ $? -ne 0 ]; then

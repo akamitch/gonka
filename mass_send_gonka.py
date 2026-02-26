@@ -43,7 +43,7 @@ def extract_txhash(output):
     return None, -1, 'не удалось извлечь txhash'
 
 def send_gonka(address, amount_gonka, sender, password, chain_id='gonka-mainnet', 
-               node='http://tower.gonka.top:26657', keyring_backend='file'):
+               node='http://net2.gonka.top:8000/chain-rpc/', keyring_backend='file'):
     """Отправка монет Gonka"""
     
     # Валидация адреса
