@@ -9,13 +9,20 @@ fi
 
 FILENAME=$1
 ACCOUNT=$2
-PAYMENTS_PATH="/home/mitch/Crypto/gonka.ai/scripts/payments/${FILENAME}"
-TX_PATH="/home/mitch/Crypto/gonka.ai/scripts/tx/${FILENAME}"
+PAYMENTS_PATH="/home/mitch/gonka.ai/scripts/payments/${FILENAME}"
+TX_PATH="/home/mitch/gonka.ai/scripts/tx/${FILENAME}"
 PAUSE_SECONDS=60
 
 # Проверка существования входного файла
 if [ ! -f "$PAYMENTS_PATH" ]; then
     echo "Ошибка: файл ${PAYMENTS_PATH} не найден!"
+    exit 1
+fi
+
+# Проверка: не были ли эти выплаты уже обработаны
+if [ -f "$TX_PATH" ]; then
+    echo -e "\033[31mЭти выплаты уже обработаны!!!\033[0m"
+    echo -e "\033[31m${TX_PATH}\033[0m"
     exit 1
 fi
 
@@ -30,7 +37,7 @@ echo "Аккаунт: ${ACCOUNT}"
 echo "==================================================="
 
 # Запуск первой команды
-/home/mitch/Crypto/gonka.ai/scripts/git_gonka/mass_send_gonka.py "$PAYMENTS_PATH" "$ACCOUNT" > "$TX_PATH"
+/home/mitch/gonka.ai/scripts/git_gonka/mass_send_gonka.py "$PAYMENTS_PATH" "$ACCOUNT" > "$TX_PATH"
 
 # Проверка успешности выполнения
 if [ $? -ne 0 ]; then
@@ -57,7 +64,7 @@ echo "Запуск верификации транзакций..."
 echo "==================================================="
 
 # Запуск второй команды
-/home/mitch/Crypto/gonka.ai/scripts/git_gonka/verify_transactions_short.sh "$TX_PATH"
+/home/mitch/gonka.ai/scripts/git_gonka/verify_transactions_short.sh "$TX_PATH"
 
 # Проверка успешности выполнения
 if [ $? -ne 0 ]; then

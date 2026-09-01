@@ -1,0 +1,36 @@
+.venv/bin/python mass_test.py
+
+export ACCOUNT_NAME=inf-test
+export NODE_URL=https://node4.gonka.ai
+export NODE_URL=http://node1.gonka.ai:8080
+export NODE_URL=http://net3.gonka.top:8000
+
+inferenced keys add "$ACCOUNT_NAME"
+
+- address: gonka1us4qm5vget00htk268e9yjxlw2kr8c44pqpdyw
+  name: inf-test
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AyE5WOJGB1n653guzRaBJmxlVOVlaBdUncSVwAeEmd+g"}'
+  type: local
+
+
+**Important** write this mnemonic phrase in a safe place.
+It is the only way to recover your account if you ever forget your password.
+
+ritual sword gas tower supply kangaroo fitness intact gate problem check metal neutral pool clarify current suggest illegal bomb enter cricket you cruise surge
+
+# спросило пароль и сохранило в кейринг хранилище
+# 24ufomufo
+
+export GONKA_ADDRESS=gonka1us4qm5vget00htk268e9yjxlw2kr8c44pqpdyw
+
+inferenced keys export $ACCOUNT_NAME --unarmored-hex --unsafe
+WARNING: The private key will be exported as an unarmored hexadecimal string. USE AT YOUR OWN RISK. Continue? [y/N]: y
+c081b2dad6d8def9855cfd034e4fcfd11ab364f41e43a7c6d6d9697832f1e704
+
+inferenced publish-pubkey \
+  --from "$ACCOUNT_NAME" \
+  --node "$NODE_URL/chain-rpc/" \
+  --chain-id "gonka-mainnet" \
+  --yes
+
+export SOURCE_URL=https://node4.gonka.ai

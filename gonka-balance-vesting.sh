@@ -16,7 +16,7 @@ fi
 
 INPUT_FILE="$1"
 OUTPUT_FILE="${2:-}"
-NODE="http://net2.gonka.top:8000"
+NODE="https://node1.gonka.ai:8443"
 DENOM="ngonka"
 
 # Проверка существования файла

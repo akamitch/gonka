@@ -14,7 +14,8 @@ from pathlib import Path
 GONKA_TO_NGONKA = 1_000_000_000  # 1 GONKA = 1 000 000 000 ngonka
 CHAIN_ID = "gonka-mainnet"
 KEYRING_BACKEND = "file"
-NODE_URL = "http://net2.gonka.top:8000/chain-rpc/"
+NODE_URL = "https://node1.gonka.ai:8443/chain-rpc/"
+INFERENCED = "/usr/local/bin/inferenced"
 
 
 def print_usage():
@@ -77,34 +78,6 @@ def validate_address(address):
             sys.exit(0)
     return True
 
-
-def find_inferenced():
-    """
-    Поиск исполняемого файла inferenced
-    
-    Returns:
-        str: путь к файлу inferenced
-    """
-    # Сначала пробуем стандартный путь
-    default_path = Path.home() / "Crypto" / "gonka.ai" / "inferenced"
-    
-    if default_path.exists():
-        return str(default_path)
-    
-    # Пробуем найти в PATH
-    result = subprocess.run(['which', 'inferenced'], 
-                          capture_output=True, 
-                          text=True)
-    
-    if result.returncode == 0:
-        return result.stdout.strip()
-    
-    print("Ошибка: не найден исполняемый файл 'inferenced'")
-    print(f"Ожидаемый путь: {default_path}")
-    print("Или убедитесь, что 'inferenced' доступен в PATH")
-    sys.exit(1)
-
-
 def send_gonka(sender, recipient, amount_ngonka, inferenced_path):
     """
     Отправка монет GONKA
@@ -136,7 +109,8 @@ def send_gonka(sender, recipient, amount_ngonka, inferenced_path):
         f"{amount_ngonka}ngonka",
         '--chain-id', CHAIN_ID,
         '--keyring-backend', KEYRING_BACKEND,
-        '--node', NODE_URL
+        '--node', NODE_URL,
+        '--yes'
     ]
     
     print("\nВыполнение команды...")
@@ -175,7 +149,7 @@ def main():
     # Валидация
     validate_address(recipient)
     amount_ngonka = validate_amount(amount_str)
-    inferenced_path = find_inferenced()
+    inferenced_path = INFERENCED
     
     # Отправка
     send_gonka(sender, recipient, amount_ngonka, inferenced_path)

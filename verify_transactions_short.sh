@@ -17,8 +17,8 @@ if [ $# -eq 0 ]; then
 fi
 
 INPUT_FILE=$1
-NODE="http://net2.gonka.top:8000/chain-rpc/"
-INFERENCED="/home/mitch/Crypto/gonka.ai/inferenced"
+NODE="https://node1.gonka.ai:8443/chain-rpc/"
+INFERENCED="/usr/local/bin/inferenced"
 
 # Проверка существования файла
 if [ ! -f "$INPUT_FILE" ]; then

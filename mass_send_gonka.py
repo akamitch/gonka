@@ -43,7 +43,7 @@ def extract_txhash(output):
     return None, -1, 'не удалось извлечь txhash'
 
 def send_gonka(address, amount_gonka, sender, password, chain_id='gonka-mainnet', 
-               node='http://net2.gonka.top:8000/chain-rpc/', keyring_backend='file'):
+               node='https://node1.gonka.ai:8443/chain-rpc/', keyring_backend='file'):
     """Отправка монет Gonka"""
     
     # Валидация адреса
@@ -60,7 +60,7 @@ def send_gonka(address, amount_gonka, sender, password, chain_id='gonka-mainnet'
     
     # Формирование команды
     cmd = [
-        '/home/mitch/Crypto/gonka.ai/inferenced', 'tx', 'bank', 'send',
+        '/usr/local/bin/inferenced', 'tx', 'bank', 'send',
         sender,
         address,
         f'{amount_ngonka}ngonka',

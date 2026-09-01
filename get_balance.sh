@@ -15,7 +15,7 @@ fi
 WALLET_ADDRESS="$1"
 
 # Путь к исполняемому файлу
-INFERENCED="$HOME/Crypto/gonka.ai/inferenced"
+INFERENCED="/usr/local/bin/inferenced"
 
 # Проверка существования исполняемого файла
 if [ ! -f "$INFERENCED" ]; then
@@ -27,7 +27,7 @@ fi
 echo "Запрос баланса для адреса: $WALLET_ADDRESS"
 echo "---"
 
-$INFERENCED query bank balances "$WALLET_ADDRESS" --node http://net2.gonka.top:8000/chain-rpc/ | \
+$INFERENCED query bank balances "$WALLET_ADDRESS" --node https://node1.gonka.ai:8443/chain-rpc/ | \
     grep amount | \
     awk '{gsub(/"/, "", $3); printf "%.1f GONKA\n", $3/1000000000}'
 
