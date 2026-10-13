@@ -67,6 +67,9 @@ def send_gonka(address, amount_gonka, sender, password, chain_id='gonka-mainnet'
         '--chain-id', chain_id,
         '--keyring-backend', keyring_backend,
         '--node', node,
+        '--gas-prices', '1ngonka',
+        '--gas', 'auto',
+        '--gas-adjustment', '1.5',
         '--yes'
     ]
     

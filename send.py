@@ -110,6 +110,9 @@ def send_gonka(sender, recipient, amount_ngonka, inferenced_path):
         '--chain-id', CHAIN_ID,
         '--keyring-backend', KEYRING_BACKEND,
         '--node', NODE_URL,
+        '--gas-prices', '1ngonka',
+        '--gas', 'auto',
+        '--gas-adjustment', '1.5',
         '--yes'
     ]
     
