@@ -64,10 +64,11 @@ while IFS= read -r wallet || [ -n "$wallet" ]; do
         --keyring-backend file \
         --unordered \
         --timeout-duration=60s \
-        --gas=2000000 \
-        --gas-adjustment=5.0 \
         --node "$NODE_URL/chain-rpc/" \
         --chain-id gonka-mainnet \
+        --gas auto \
+        --gas-prices 1ngonka \
+        --gas-adjustment 5 \
         --yes 2>&1; then
         
         echo -e "${GREEN}✓ Успешно: $wallet${NC}"
